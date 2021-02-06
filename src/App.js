@@ -7,8 +7,11 @@ import ItemListContainer from './containers/itemListContainer';
 const App = () => {
   return (
     <>
-    <NavbarComponent/>
+    <div className="container-fluid">
+    <NavbarComponent />
+    <br></br>
     <ItemListContainer greeting={'Bienvenidos a mi primer app'}/>
+    </div>
     </>
   );
 }
