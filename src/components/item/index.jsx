@@ -4,7 +4,7 @@ const ItemComponent = ({item}) =>{
     return(
         <>
             <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={item.img} />
+            <Card.Img width="80%" variant="top" src={item.img} />
             <Card.Body>
                 <Card.Title>{item.name}</Card.Title>
                 <Card.Text>
