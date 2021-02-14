@@ -10,11 +10,12 @@ const App = () => {
   return (
     <>
     <BrowserRouter>
-    <div className="container-fluid">
         <NavbarComponent />
+    <div className="container-fluid">
             <Switch>
               <Route exact path='/' component={ItemListContainer}/>
-              <Route exact path='/item/:id' component={ItemDetailContainer}/>
+              <Route path='/category/:categoryId' component={ItemListContainer}/>
+              <Route path='/item/:id' component={ItemDetailContainer}/>
             </Switch>
     </div>
     </BrowserRouter>
