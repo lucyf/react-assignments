@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Button, Card} from 'react-bootstrap';
 
+
 const ItemDetailComponent = ({item}) =>{
     return(
         <>
@@ -14,8 +15,7 @@ const ItemDetailComponent = ({item}) =>{
                 <p>
                     incerte descripcion del producto aqui
                 </p>
-                <Button>Agregar al Carrito</Button>
-
+                <Button>Check Out</Button>
             </div>
         </div>
         </>

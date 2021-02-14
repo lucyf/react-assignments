@@ -1,13 +1,13 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Nav, NavDropdown, Form, FormControl, Button} from 'react-bootstrap'
-
-import CartWidgetComponent from '../cartWidget'
+import { Navbar, Nav, NavDropdown, Form, FormControl, Button} from 'react-bootstrap';
+import CartWidgetComponent from '../cartWidget';
+import { NavLink } from 'react-router-dom';
 
 const NavbarComponent = () => {
   return (
     <>
  <Navbar bg="light">
-    <Navbar.Brand href="#home">Brand link</Navbar.Brand>
+
+   <NavLink to={`/`}><Navbar.Brand>All You Need</Navbar.Brand></NavLink>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav" className="p-3 ">
     <Nav className="mr-auto">
