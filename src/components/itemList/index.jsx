@@ -4,7 +4,7 @@ const ItemListComponent = ({product}) =>{
     return(
         <>
         <div>
-            <ul className="row ">
+            <ul className="row justify-content-center">
                 {product.map((product)=>{
                     return <li className="list-unstyled p-3" key={product.id}>
                         <ItemComponent item={product}/>

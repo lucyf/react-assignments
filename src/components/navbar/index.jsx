@@ -10,7 +10,7 @@ const NavbarComponent = () => {
     <>
  <Navbar bg="light">
 
-    <LinkContainer to={`/`}><Navbar.Brand>All You Need</Navbar.Brand></LinkContainer>
+    <LinkContainer to={`/`}><Navbar.Brand className="m-0 p-0 "><img src="/img/all-you-need.svg" width="150px" alt=""/></Navbar.Brand></LinkContainer>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav" className="p-3 ">
     <Nav className="mr-auto">
@@ -23,7 +23,7 @@ const NavbarComponent = () => {
     </Nav>
     <Form inline>
       <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-      <Button variant="outline-success">Search</Button>
+      <Button className="p-1" variant="outline-dark">Search</Button>
     </Form>
     </Navbar.Collapse>
     <div className="">
