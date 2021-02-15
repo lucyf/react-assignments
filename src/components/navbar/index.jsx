@@ -1,23 +1,24 @@
-import { Navbar, Nav, NavDropdown, Form, FormControl, Button} from 'react-bootstrap';
+import { Navbar, Nav, Form, FormControl, Button} from 'react-bootstrap';
 import CartWidgetComponent from '../cartWidget';
-import { NavLink, Link} from 'react-router-dom';
+import {LinkContainer} from 'react-router-bootstrap';
+
 
 const NavbarComponent = () => {
+  
+
   return (
     <>
  <Navbar bg="light">
 
-   <NavLink to={`/`}><Navbar.Brand>All You Need</Navbar.Brand></NavLink>
+    <LinkContainer to={`/`}><Navbar.Brand>All You Need</Navbar.Brand></LinkContainer>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav" className="p-3 ">
     <Nav className="mr-auto">
-    <NavLink to={`/`}><Nav.Link>Home</Nav.Link></NavLink>
-      <NavDropdown title="Productos" id="basic-nav-dropdown">
-        <NavDropdown.Item href="#action/3.1">Planners</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.2">Lapiceras</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.3">Relojes</NavDropdown.Item>
-      </NavDropdown>
-      <NavLink to={`/`}><Nav.Link href="#link">Contacto</Nav.Link></NavLink>
+    <LinkContainer to={`/`}><Nav.Link>Home</Nav.Link></LinkContainer>
+    <LinkContainer to={`/category/${'pens'}`}><Nav.Link>Lapiceras</Nav.Link></LinkContainer>
+    <LinkContainer to={`/category/${'planners'}`}><Nav.Link>Planners</Nav.Link></LinkContainer>
+    <LinkContainer to={`/category/${'clocks'}`}><Nav.Link>Relojes</Nav.Link></LinkContainer>
+    <Nav.Link href="#link">Contacto</Nav.Link>
       <Nav.Link href="#link">FAQ</Nav.Link>
     </Nav>
     <Form inline>

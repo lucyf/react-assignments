@@ -1,28 +1,32 @@
 import * as React from 'react';
 import ProductList from "../../mocks/products"
 import ItemListComponent from '../../components/itemList';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 
 
 const ItemListContainer = () => {
   const {categoryId} = useParams()
   const [product, setProduct] = React.useState([]);
+  console.log(categoryId)
   
   React.useEffect(()=>{
-        const myPromise = new Promise((resolve,reject) =>{
+  const myPromise = new Promise((resolve,reject) =>{
       resolve(()=>{
         let filter = ProductList.filter(p => p.category === categoryId)
-        return filter
+        if(categoryId === undefined){
+          return ProductList
+        }else{return filter}     
       });
     });
     myPromise.then((result) =>{
       setProduct(result);
-    },[categoryId]);
-  })
+    });
+
+  },[categoryId]);
   
   return (
     <>
-      
+         
       <div className="ml-3 mt-3">
       <ItemListComponent product={product}/>
       </div>

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 import ItemDetailComponent from '../../components/itemDetail';
 import ProductList from "../../mocks/products"
 
