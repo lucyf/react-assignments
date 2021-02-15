@@ -1,27 +1,45 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 
-const ItemCountComponent = () => {
-    const [number, setNumber]= useState(0);
- 
+const ItemCountComponent = ({onAdd}) => {
+    const [number, setNumber]= useState(1);
+
+    const plus = ()=>{
+        let max = 5
+        if(number <= max){
+        setNumber(number + 1)
+        }
+    }
+
+    const less = ()=>{
+        let min = 1
+        if(number > min){
+        setNumber(number - 1)
+        }
+    }
+
+    const handlerOnAdd =() =>{
+        onAdd(number)
+    }
+     
     return (
 
     <>
-    <div className="col-4 align-items-center">
-        <div className="row m-3 align-items-center">
-        
-        <Button onClick={() =>{setNumber(number + 1)}} variant="light" disabled={number === 5}>+</Button>
-        <div className="ml-3 mr-3">
-            <h6>{number}</h6>
+    <div className="aling-items-center">
+        <div id="counter" className="row d-flex justify-content-left m-1 align-items-center">
+            <Button className="" onClick= {less} variant="danger" disabled={number <= 1}>-</Button> 
+            <div className="ml-3 mr-3">
+                <h6>{number}</h6>
+            </div>
+            <Button onClick={plus} variant="danger" disabled={number === 5}>+</Button>    
+        <div className="m-3 d-flex justify-content-left">
+                <Button id="" onClick={handlerOnAdd} className="p-1" variant="outline-danger">Agregar al carrito</Button>
         </div>
-        <Button onClick={() =>{setNumber(number - 1)}} variant="light" disabled={number === 0}>-</Button>
-        
         </div>
-
-        <div className=" row m-3">
-            <Button>Agregar al carrito</Button>
+        <div className="mb-3">
+            <h6>Productos seleccionados: {number}</h6>
         </div>
     </div>
     </>

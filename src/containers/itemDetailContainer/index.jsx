@@ -13,13 +13,13 @@ const ItemDetailContainer = () => {
       });
       itemDetailPromise.then((result) =>{
       setItem(result);
-    }, [id]);
- })
+    });
+ }, [id]);
 
   return (
     <>
     {item.filter(item => item.id.toString() === id).map((item)=>{
-         return <li className="list-unstyled p-3" key={item.id}>
+         return <li className="list-unstyled p-3 justify-content-center" key={item.id}>
                         <ItemDetailComponent item={item}/>
                         </li>;
                 })}
