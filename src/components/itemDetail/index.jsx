@@ -1,16 +1,22 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Button,} from 'react-bootstrap';
+import { cartContext } from '../../context/cartContext';
 import ItemCountComponent from '../itemCount';
 
 
 const ItemDetailComponent = ({item}) =>{
     const [goToCart, setGoToCart] = useState(false);
     const [number, setNumber] = useState()
+   const {cart, setCart} = useContext(cartContext);
+   console.log(cart);
     
     const onAdd = (number) =>{
         setNumber(number)
         setGoToCart(true);
+        setCart([...cart,[{item, quantity:number}]])      
     }
+
+
 
     return(
         <>
@@ -31,7 +37,9 @@ const ItemDetailComponent = ({item}) =>{
                 
                 </div>
                 
-                : <ItemCountComponent onAdd={onAdd}/> }    
+                : <div>
+                    <h6 style={{opacity: 0.5}}>{item.stock} productos disponibles</h6>
+                    <ItemCountComponent onAdd={onAdd}/> </div>}    
             </div>
             </div>
         </div>

@@ -4,10 +4,11 @@ import ItemListComponent from '../../components/itemList';
 import { useParams } from 'react-router-dom';
 
 
+
 const ItemListContainer = () => {
   const {categoryId} = useParams()
   const [product, setProduct] = React.useState([]);
-  console.log(categoryId)
+  
   
   React.useEffect(()=>{
   const myPromise = new Promise((resolve,reject) =>{
