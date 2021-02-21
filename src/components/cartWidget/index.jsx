@@ -1,11 +1,10 @@
-import { useContext } from 'react';
+
 import {Dropdown} from 'react-bootstrap';
-import { cartContext } from '../../context/cartContext';
+
 
 
 
 const CartWidgetComponent = () => {
-    const cart = useContext(cartContext);
 
   return (
 

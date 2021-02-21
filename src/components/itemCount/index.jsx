@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 
 const ItemCountComponent = ({onAdd}) => {
@@ -33,13 +33,14 @@ const ItemCountComponent = ({onAdd}) => {
             <div className="ml-3 mr-3">
                 <h6>{number}</h6>
             </div>
-            <Button onClick={plus} variant="danger" disabled={number === 5}>+</Button>    
-        <div className="m-3 d-flex justify-content-left">
-                <Button id="" onClick={handlerOnAdd} className="p-1" variant="outline-danger">Agregar al carrito</Button>
-        </div>
-        </div>
+            <Button onClick={plus} variant="danger" disabled={number === 5}>+</Button>   
+        </div> 
         <div className="mb-3">
-            <h6>Productos seleccionados: {number}</h6>
+            <p style={{opacity: 0.5}}>Productos seleccionados: {number}</p>
+        </div>
+        <div className="mt-3 mb-3 d-flex justify-content-left">
+                <Button className="p-6" id="" onClick={handlerOnAdd} className="p-1" variant="outline-danger">Agregar al carrito</Button>
+        
         </div>
     </div>
     </>

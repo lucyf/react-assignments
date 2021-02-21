@@ -1,7 +1,12 @@
 import {Card, Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
+import ItemCountComponent from '../itemCount';
+import { cartContext } from '../../context/cartContext';
+import { useContext, useState } from 'react';
+
 
 const ItemComponent = ({item}) =>{
+
     return(
         <>
             <Card style={{ width: '15rem' }} >
@@ -13,7 +18,6 @@ const ItemComponent = ({item}) =>{
                 </Card.Text>
                 <div className="align-items-center justify-content-center ">
                 <Link to={`/item/${item.id}`}> <Button variant="light" className="mb-2 pl-5 pr-5">Ver detalle</Button></Link>
-                <Button variant="danger" className="pr-4 pl-4">Agregar al Carrito</Button>
                 </div>
             </Card.Body>
             </Card>
