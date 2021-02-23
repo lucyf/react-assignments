@@ -6,18 +6,23 @@ export const CartProvider = ({children})=> {
     const [cart, setCart] = useState([])
 
    const addToCart =  (item) => {      
-        
-         setCart([...cart,item]) 
-      
+        setCart([...cart,item]) 
    }
 
-   
-   const isInCart = (id) => {
-
-         return cart.findIndex(prod => prod.id === id)
+  const removeItem = (product) => {
+     let index = cart.findIndex(p => p.id === product.id);
+        return cart.splice(index, 1)
   }
 
-    return <cartContext.Provider value= {{cart, addToCart}}>
+   
+   
+     const isInCart = (item) => {
+
+         return 
+  }
+
+
+    return <cartContext.Provider value= {{cart, addToCart, removeItem}}>
         {children}
     </cartContext.Provider>
 

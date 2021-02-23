@@ -8,7 +8,7 @@ import ItemCountComponent from '../itemCount';
 const ItemDetailComponent = ({item}) =>{
     const [goToCart, setGoToCart] = useState(false);
     const [number, setNumber] = useState()
-   const {cart, addToCart} = useContext(cartContext);
+   const {cart, addToCart, remove} = useContext(cartContext);
   
     
     const onAdd = (number) =>{
@@ -16,6 +16,8 @@ const ItemDetailComponent = ({item}) =>{
         setGoToCart(true);
         addToCart({item: {item}, quantity:number});   
     }
+
+
 
     console.log(cart)
     return(
