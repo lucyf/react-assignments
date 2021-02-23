@@ -1,5 +1,5 @@
-
-import {Dropdown} from 'react-bootstrap';
+import {Link} from 'react-router-dom'
+import {Button} from 'react-bootstrap';
 
 
 
@@ -9,22 +9,7 @@ const CartWidgetComponent = () => {
   return (
 
     <>
-       <Dropdown>
-        <Dropdown.Toggle variant="none" id="dropdown-left">
-            <img src="/img/carrito.png" width="30%" alt=""/>
-        </Dropdown.Toggle>
-        <Dropdown.Menu>
-          <div>
-            <ul>
-              <li className="row">
-                <h6 className="m-1"><strong>soy un item</strong></h6>
-
-                
-              </li>
-            </ul>
-          </div>
-        </Dropdown.Menu>
-    </Dropdown>
+       <Link to={`/cart`}> <Button variant="none"><img src="/img/carrito.png" width="20px"alt=""/></Button></Link>
 
     </>
     
