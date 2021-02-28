@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 
 
 
+
 const ItemListContainer = () => {
   const {categoryId} = useParams()
   const [product, setProduct] = React.useState([]);
@@ -31,6 +32,9 @@ const ItemListContainer = () => {
       <div className="ml-3 mt-3">
       <ItemListComponent product={product}/>
       </div>
+
+
+
     </>
   );
 }

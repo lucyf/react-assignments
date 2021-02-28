@@ -39,8 +39,7 @@ const ItemCountComponent = ({onAdd}) => {
             <p style={{opacity: 0.5}}>Productos seleccionados: {number}</p>
         </div>
         <div className="mt-3 mb-3 d-flex justify-content-left">
-                <Button className="p-6" id="" onClick={handlerOnAdd} className="p-1" variant="outline-danger">Agregar al carrito</Button>
-        
+                <Button style={{padding:"1rem 4rem"}} id="" onClick={handlerOnAdd} className="p-1" variant="outline-danger">Agregar al carrito</Button>  
         </div>
     </div>
     </>

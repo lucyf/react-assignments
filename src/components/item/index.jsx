@@ -6,6 +6,16 @@ import { useContext, useState } from 'react';
 
 
 const ItemComponent = ({item}) =>{
+    const [goToCart, setGoToCart] = useState(false);
+    const [number, setNumber] = useState()
+   const {cart, addToCart, remove} = useContext(cartContext);
+  
+    
+    const onAdd = (number) =>{
+        setNumber(number)
+        setGoToCart(true);
+        addToCart({item: {item}, quantity:number});   
+    }
 
     return(
         <>
@@ -16,6 +26,9 @@ const ItemComponent = ({item}) =>{
                 <Card.Text>
                     Precio: $ {item.price}
                 </Card.Text>
+                <div>
+                    <ItemCountComponent onAdd={onAdd}/>
+                </div>
                 <div className="align-items-center justify-content-center ">
                 <Link to={`/item/${item.id}`}> <Button variant="light" className="mb-2 pl-5 pr-5">Ver detalle</Button></Link>
                 </div>
