@@ -13,7 +13,6 @@ export const CartProvider = ({children})=> {
     }
  
     const totalPrice = (product) =>{
-        //let total = 0
         let priceQuantity = product.quantity * product.item.item.price
         let isItemInCart = cart.findIndex(c => c.item.item.id === product.item.item.id)
         if(isItemInCart === -1){
@@ -33,7 +32,10 @@ export const CartProvider = ({children})=> {
  
    const cancelShop = (product) => {
      let deleted = product.splice()
-     return setCart(deleted)
+     let price = 0
+     setCart(deleted)
+     setPrice(price)
+
    }
     
     

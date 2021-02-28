@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap';
 
 
 const CartComponent = () =>{
-    const {cart, cancelShop, removeItem} = useContext(cartContext);
+    const {cart, cancelShop, removeItem, price} = useContext(cartContext);
     
  
     return (
@@ -39,8 +39,8 @@ const CartComponent = () =>{
             </div>
             <div className=" m-3 justify-content-right"> 
                 <div className="aling-items-top justify-content-right">
-                    <h5>Total Price: </h5>
-                    <Button variant="link" style={{color:'black', opacity:0.7,fontSize:"0.85rem"}} onClick={() =>cancelShop(cart)}>Cancelar compra</Button>
+                    <h5>Total a pagar: ${price} </h5>
+                    <Button className="p-0" variant="link" style={{color:'black', opacity:0.7,fontSize:"0.85rem"}} onClick={() =>cancelShop(cart)}>Cancelar compra</Button>
                 </div>
             </div>
             

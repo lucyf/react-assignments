@@ -8,13 +8,14 @@ import ItemCountComponent from '../itemCount';
 const ItemDetailComponent = ({item}) =>{
     const [goToCart, setGoToCart] = useState(false);
     const [number, setNumber] = useState()
-   const {cart, addToCart} = useContext(cartContext);
+   const {addToCart, totalPrice} = useContext(cartContext);
   
     
     const onAdd = (number) =>{
         setNumber(number)
         setGoToCart(true);
         addToCart({item: {item}, quantity:number});
+        totalPrice({item: {item}, quantity:number})
     }
 
     return(
@@ -33,12 +34,14 @@ const ItemDetailComponent = ({item}) =>{
                 {goToCart ? <div>
                     <h5 className="mt-3 mb-3">{number} productos seleccionados</h5>
                    <Link to={`/cart`}><Button variant="dark">Finalizar compra</Button></Link>
-                
+                   <Link to={`/`}><Button className="m-1" variant="danger">Seguir comprando</Button></Link>
                 </div>
                 
-                : <div>
-                    <h6 style={{opacity: 0.5}}>{item.stock} productos disponibles</h6>
-                    <ItemCountComponent onAdd={onAdd}/> </div>}    
+                    : <div>
+                        <h6 style={{opacity: 0.5}}>{item.stock} productos disponibles</h6>
+                        <ItemCountComponent onAdd={onAdd}/>
+
+                      </div>}    
             </div>
             </div>
         </div>
