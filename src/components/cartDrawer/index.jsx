@@ -8,7 +8,7 @@ const pStyle = () => {
 }
 
 const CartDrawerComponent = () =>{
-    const {cart, cancelShop, removeItem} = useContext(cartContext);
+    const {cart, cancelShop, removeItem, price} = useContext(cartContext);
     
  
     return (
@@ -37,7 +37,7 @@ const CartDrawerComponent = () =>{
                 </div>
             </div>
             <hr/>
-            <h6 className="mb-2">Subtotal:$ </h6>
+            <h6 className="mb-2">Subtotal:$ {price}</h6>
             <div className="row justify-content-center">
                    <Link to={`/cart`}> <Button variant="danger" className="m-1" style={{padding:"0.3rem 5rem"}}>Ir al Carrito</Button></Link>
                     <Button  className="p-0" variant="link" style={{color:'black', fontSize:"0.85rem", opacity:0.7}} onClick={() =>cancelShop(cart)}>Cancelar</Button>

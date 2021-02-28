@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 
 const ItemCountComponent = ({onAdd}) => {
     const [number, setNumber]= useState(1);
+    
 
     const plus = ()=>{
         let max = 5

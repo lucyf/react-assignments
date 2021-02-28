@@ -8,18 +8,15 @@ import ItemCountComponent from '../itemCount';
 const ItemDetailComponent = ({item}) =>{
     const [goToCart, setGoToCart] = useState(false);
     const [number, setNumber] = useState()
-   const {cart, addToCart, remove} = useContext(cartContext);
+   const {cart, addToCart} = useContext(cartContext);
   
     
     const onAdd = (number) =>{
         setNumber(number)
         setGoToCart(true);
-        addToCart({item: {item}, quantity:number});   
+        addToCart({item: {item}, quantity:number});
     }
 
-
-
-    console.log(cart)
     return(
         <>
         <div className="row align-items-center justify-content-center">

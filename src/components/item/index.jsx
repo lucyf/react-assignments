@@ -6,15 +6,14 @@ import { useContext, useState } from 'react';
 
 
 const ItemComponent = ({item}) =>{
-    const [goToCart, setGoToCart] = useState(false);
     const [number, setNumber] = useState()
-   const {cart, addToCart, remove} = useContext(cartContext);
+   const {addToCart, totalPrice} = useContext(cartContext);
   
     
     const onAdd = (number) =>{
-        setNumber(number)
-        setGoToCart(true);
-        addToCart({item: {item}, quantity:number});   
+        setNumber(number);
+        addToCart({item: {item}, quantity:number}); 
+        totalPrice({item: {item}, quantity:number})
     }
 
     return(
