@@ -16,7 +16,7 @@ const NavbarComponent = () => {
     <Nav className="mr-auto">
     <LinkContainer to={`/`}><Nav.Link>Home</Nav.Link></LinkContainer>
     <LinkContainer to={`/category/${'pens'}`}><Nav.Link>Lapiceras</Nav.Link></LinkContainer>
-    <LinkContainer to={`/category/${'planners'}`}><Nav.Link>Planners</Nav.Link></LinkContainer>
+    <LinkContainer to={`/category/${'notebooks'}`}><Nav.Link>Planners</Nav.Link></LinkContainer>
     <LinkContainer to={`/category/${'clocks'}`}><Nav.Link>Relojes</Nav.Link></LinkContainer>
     <Nav.Link href="#link">Contacto</Nav.Link>
       <Nav.Link href="#link">FAQ</Nav.Link>

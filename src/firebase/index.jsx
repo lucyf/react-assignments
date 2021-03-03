@@ -11,9 +11,7 @@
         messagingSenderId: "824944917965",
         appId: "1:824944917965:web:0cf8a40615c675e5b15884",
         measurementId: "G-LHKMF0R9XZ"
-      }
-
- );
+      });
  
  export const getFireBase = () => {
      return app;

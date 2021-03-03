@@ -28,11 +28,11 @@ const ItemDetailComponent = ({item}) =>{
                 <h1>{item.name}</h1>
                 <h3>${item.price}</h3>
                 <p>
-                    incerte descripcion del producto aqui
+                    {item.description}
                 </p>
             <div className="">
                 {goToCart ? <div>
-                    <h5 className="mt-3 mb-3">{number} productos seleccionados</h5>
+                    <h6 className="mt-3 mb-3">Cantidad seleccionada: {number}</h6>
                    <Link to={`/cart`}><Button variant="dark">Finalizar compra</Button></Link>
                    <Link to={`/`}><Button className="m-1" variant="danger">Seguir comprando</Button></Link>
                 </div>

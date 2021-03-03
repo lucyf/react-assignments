@@ -5,6 +5,7 @@ import ItemDetailContainer from './containers/itemDetailContainer';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import { CartProvider } from './context/cartContext';
 import CartComponent from './components/cartComponent';
+import { DataBaseProvider } from './context/dataBaseContext';
 
 
 
@@ -12,6 +13,7 @@ import CartComponent from './components/cartComponent';
 const App = () => {
   return (
     <>
+    <DataBaseProvider>
     <CartProvider>
     <BrowserRouter>
         <NavbarComponent />
@@ -25,6 +27,7 @@ const App = () => {
     </div>
     </BrowserRouter>
     </CartProvider>
+    </DataBaseProvider>
     </>
   );
 }

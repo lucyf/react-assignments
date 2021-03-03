@@ -40,7 +40,7 @@ const CartComponent = () =>{
             <div className=" m-3 justify-content-right"> 
                 <div className="aling-items-top justify-content-right">
                     <h5>Total a pagar: ${price} </h5>
-                    <Button className="p-0" variant="link" style={{color:'black', opacity:0.7,fontSize:"0.85rem"}} onClick={() =>cancelShop(cart)}>Cancelar compra</Button>
+                    <Button className="p-0" variant="link" style={{color:'black', opacity:0.7,fontSize:"0.8em"}} onClick={() =>cancelShop(cart)}>Cancelar compra</Button>
                 </div>
             </div>
             
