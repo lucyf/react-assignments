@@ -33,7 +33,7 @@ const ItemDetailComponent = ({item}) =>{
             <div className="">
                 {goToCart ? <div>
                     <h6 className="mt-3 mb-3">Cantidad seleccionada: {number}</h6>
-                   <Link to={`/cart`}><Button variant="dark">Finalizar compra</Button></Link>
+                   <Link to={`/cart`}><Button variant="dark">Ir al carrito</Button></Link>
                    <Link to={`/`}><Button className="m-1" variant="danger">Seguir comprando</Button></Link>
                 </div>
                 

@@ -1,22 +1,17 @@
 import * as React from 'react';
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ItemDetailComponent from '../../components/itemDetail';
 import { dataBaseContex } from '../../context/dataBaseContext';
-import ProductList from "../../mocks/products"
 
 const ItemDetailContainer = () => {
   const {id} = useParams()
   const {itemList} = useContext(dataBaseContex)
-  const [item, setItem] = React.useState([]);
+  const [item, setItem] = useState([]);
   
-  React.useEffect(()=>{
-      const itemDetailPromise = new Promise((resolve,reject) =>{
-          resolve(itemList)
-      });
-      itemDetailPromise.then((result) =>{
-      setItem(result);
-    });
+  useEffect(()=>{
+      setItem(itemList);
+    
  }, [id]);
 
   return (

@@ -1,8 +1,7 @@
 import * as React from 'react';
-import ProductList from "../../mocks/products"
 import ItemListComponent from '../../components/itemList';
 import { useParams } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { dataBaseContex } from '../../context/dataBaseContext';
 
 
@@ -12,8 +11,7 @@ const ItemListContainer = () => {
   const {itemList} = useContext(dataBaseContex)
   const [product, setProduct] = React.useState([]);
 
-  console.log(itemList)
-  React.useEffect(()=>{
+  useEffect(()=>{
   const myPromise = new Promise((resolve,reject) =>{
       resolve(()=>{
         let filter = itemList.filter(p => p.categoryId === categoryId)

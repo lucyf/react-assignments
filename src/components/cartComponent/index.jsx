@@ -1,11 +1,13 @@
 import { cartContext } from '../../context/cartContext';
 import { useContext } from 'react';
 import { Button } from 'react-bootstrap';
+import {Link} from 'react-router-dom'
 
 
 const CartComponent = () =>{
     const {cart, cancelShop, removeItem, price} = useContext(cartContext);
     
+    const condition = cart.length !== 0
  
     return (
         <>
@@ -14,6 +16,9 @@ const CartComponent = () =>{
                 <h3>Carrito de compras</h3>
                 </div>
             <hr/>
+            <div className="row">
+            {condition ? 
+            <div id="cart-content">
             <div className="row">
                 <div className="col-xs-8 m-3">
                     {cart.map((cart) => {
@@ -30,7 +35,7 @@ const CartComponent = () =>{
                             <h6>Precio: $ {cart.item.item.price}</h6> 
                         </div>
                         <div className="col-xs-5 aling-items-top">
-                            <Button onClick={()=>removeItem(cart)} variant="none" style={{opacity: 0.5}}>x</Button>
+                            <Button onClick={()=>removeItem(cart)} variant="none" style={{opacity: 0.5}}>X</Button>
                         </div>    
                     </div>
                     })}
@@ -38,12 +43,23 @@ const CartComponent = () =>{
                 </div>
             </div>
             <div className=" m-3 justify-content-right"> 
-                <div className="aling-items-top justify-content-right">
+                <div className="aling-items-top justify-content-right col-xs-3">
                     <h5>Total a pagar: ${price} </h5>
+                </div>
+                <div className="col-xs-3">
+                    <Link to={`/checkout`}><Button variant="danger" className="m-3">Finalizar Compra</Button></Link>
                     <Button className="p-0" variant="link" style={{color:'black', opacity:0.7,fontSize:"0.8em"}} onClick={() =>cancelShop(cart)}>Cancelar compra</Button>
                 </div>
             </div>
-            
+            </div>
+           : <div id="empty-cart">
+                <h6 className="mb-3"> 
+                    No tienes productos agregados. 
+                </h6>
+               <Link to={`/`}> <Button variant="danger">Seguir comprando</Button></Link>
+            </div>
+            }
+            </div>
         </div>
         </>
     )

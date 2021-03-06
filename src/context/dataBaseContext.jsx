@@ -7,7 +7,7 @@ export const dataBaseContex = createContext();
 export const DataBaseProvider = ({children})=> {
     const [itemList, setItemList] = useState([])
 
-    React.useEffect(()=>{
+    useEffect(()=>{
         const db = getFirestore()
         const itemCollection = db.collection("ItemCollection")
 
@@ -15,9 +15,10 @@ export const DataBaseProvider = ({children})=> {
             let array = value.docs.map(e => {
             return {...e.data(), id:e.id}})
             return setItemList(array)
-         })
-         
+        })
     },[]);
+    
+        
    
     return <dataBaseContex.Provider value={{itemList}}>
         {children}
