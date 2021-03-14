@@ -7,6 +7,7 @@ import { CartProvider } from './context/cartContext';
 import CartComponent from './components/cartComponent';
 import CheckoutComponent from './components/checkout';
 import { DataBaseProvider } from './context/dataBaseContext';
+import { FiltersProvider } from './context/filters';
 
 
 
@@ -14,6 +15,7 @@ import { DataBaseProvider } from './context/dataBaseContext';
 const App = () => {
   return (
     <>
+    <FiltersProvider>
     <DataBaseProvider>
     <CartProvider>
     <BrowserRouter>
@@ -30,6 +32,7 @@ const App = () => {
     </BrowserRouter>
     </CartProvider>
     </DataBaseProvider>
+    </FiltersProvider>
     </>
   );
 }

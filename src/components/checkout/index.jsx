@@ -1,101 +1,74 @@
-import Form from 'react-bootstrap/Form';
-import {Button }from 'react-bootstrap';
-import {Link} from 'react-router-dom'
-import { useContext, useState } from 'react';
-import { cartContext } from '../../context/cartContext';
-import { getFirestore } from '../../firebase';
-import Modal from 'react-bootstrap/Modal';
-
-// import FormControl from 'react-bootstrap/FormControl';
-// import FormFile from 'react-bootstrap/FormFile';
-// import FormCheck from 'react-bootstrap/FormCheck'
+import { useState } from "react";
+import Stepper from '@material-ui/core/Stepper';
+import Step from '@material-ui/core/Step';
+import StepLabel from '@material-ui/core/StepLabel';
+import BuyerDataComponent from "../buyerData";
+import AddressComponent from "../address";
+import { Button } from "react-bootstrap";
 
 const CheckoutComponent = ()=>{
-    const {cart, price, cancelShop} = useContext(cartContext)
+    const [activeStep, setActiveStep] =useState(0);
 
-    const [name, setName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
-    const [phone, setPhone] = useState('');
-    const [orderId, setOrderId] = useState('');
-    const [show, setShow] = useState(false);
-   // const [disabled, setDisabled] = useState(true)
-    let isEnabled = name.length > 0 && email.length > 0 && phone.length > 0 && phone.length > 0
+    const steps = ['Agrega tus datos', 'Datos de Envio', 'Datos de pago'];
 
-    const handleClose = () => {
-        setShow(false);
-        cancelShop(cart)
+    const handleNext = () => {
+      setActiveStep(activeStep + 1);
     };
-    const handleShow = () => setShow(true);
+  
+    const handleBack = () => {
+      setActiveStep(activeStep - 1);
+    };
 
-    let newOrder = {buyer:{name: name, lastname: lastName, email: email, phone: phone},items: [...cart], total:price}
+    const getStepContent = (step) => {
+        switch (step) {
+          case 0:
+            return <BuyerDataComponent />;
+          case 1:
+            return <AddressComponent />;
+        //   case 2:
+        //     return 
+          default:
+            throw new Error('Unknown step');
+        }
+      }
 
-    const db = getFirestore()
-    const OrderCollection = db.collection("Orders")
-
-   const orderBtn = ()=>{
-        OrderCollection.add(newOrder).then((value) =>{
-            setOrderId(value.id)
-        });
-        handleShow()
-    }  
-    
-
-   
     return (
-        <div className="mt-3 ml-3">
-            <div id="checkout">
-           <div className="row mb-3">
-               <h1>CheckOut</h1>
-            </div>
-            <div id="form" className="row align-items-center">
-            <Form >
-                
-                <div className="row">
-                <div className="col">
-                <Form.Label>Nombre/s</Form.Label>
-                <Form.Control type="text" onChangeCapture={(e) =>{setName(e.target.value)}} placeholder="Nombre/s" />
-                </div>
-                <div className="col">
-                <Form.Label>Apellido/s</Form.Label>
-                <Form.Control type="text" onChangeCapture={(e) =>{setLastName(e.target.value)}} placeholder="Apellido/s" />
-                </div>
-                </div>
-                <Form.Group className="mt-3">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control type="text" onChangeCapture={(e) =>{setEmail(e.target.value)}} placeholder="Ingresa tu email" />
-                </Form.Group>
-                <Form.Group className="mt-3">
-                    <Form.Label>Teléfono</Form.Label>
-                    <Form.Control type="text" onChangeCapture={(e) =>{setPhone(e.target.value)}} placeholder="Ingresa tu teléfono" />
-                </Form.Group>
-                <Button disabled={!isEnabled} onClick={orderBtn} variant="dark">Comprar</Button>
-            </Form>
-            </div>
-            </div>
-            <div id="modal">
-                <Modal show={show} onHide={handleClose}>
-                    <Modal.Header closeButton>
-                    <Modal.Title>Compra exitosa</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <p>
-                        Gracias por confiar en nosotros. Tu compra ha sido procesada con éxito.
-                        </p>
-                        <h6>Tu numero de orden es: <strong> {orderId}</strong></h6>
-                    </Modal.Body>
-                    <Modal.Footer>
-                    <Link to={`/`}><Button variant="dark" onClick={handleClose}>
-                        Finalizar
-                    </Button>
-                    </Link>
-                    </Modal.Footer>
-                </Modal>
-
-            </div>
+        <>
+        <div>
+        <Stepper activeStep={activeStep}>
+            {steps.map((label) => (
+              <Step key={label}>
+                <StepLabel>{label}</StepLabel>
+              </Step>
+            ))}
+          </Stepper>
         </div>
+        <div>
+            {activeStep === steps.length ? (
+                <div id="finished-msg">
+                    <h5>Gracias por tu compra.</h5>
+                    <h6>Tu numero de orden es: <strong>#111111</strong>. Te enviamos la confirmacion de la orden por mail y te enviaremos la actualizacion del estado de tu pedido.</h6>
+                </div>
+
+            ) : ( 
+                <div id="each-step">
+                    {getStepContent(activeStep)}
+                    
+                    <div id="checkout-btns">
+                    
+                    {activeStep !== 0 && (
+                    <Button variant="outline-dark" className="mr-2" onClick={handleBack}>Volver</Button>
+                    )}
+                    
+                    <Button variant="dark" onClick={handleNext}>{activeStep === steps.length - 1 ? 'Finalizar Compra' : 'Siguiente'}</Button>
+                </div>
+
+                </div>) }
+        </div>
+
+
+        </>
     )
-
+  
 }
-
 export default CheckoutComponent;

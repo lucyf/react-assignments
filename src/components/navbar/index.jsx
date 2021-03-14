@@ -1,10 +1,14 @@
 import { Navbar, Nav, Form, FormControl, Button} from 'react-bootstrap';
 import CartWidgetComponent from '../cartWidget';
 import {LinkContainer} from 'react-router-bootstrap';
+import SearchIcon from '@material-ui/icons/Search';
+import { useContext } from 'react';
+import { filtersContext } from '../../context/filters';
 
 
 const NavbarComponent = () => {
-  
+    const {catchInput, searchValue, submitResult} = useContext(filtersContext)
+
 
   return (
     <>
@@ -22,8 +26,8 @@ const NavbarComponent = () => {
       <Nav.Link href="#link">FAQ</Nav.Link>
     </Nav>
     <Form inline>
-      <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-      <Button className="p-1" variant="outline-dark">Search</Button>
+      <FormControl type="text" placeholder="Búsqueda" value={searchValue} onChangeCapture={(e)=>{catchInput(e.target.value)}} className="mr-sm-2" />
+      <Button className="p-1" variant="outline-dark" ><SearchIcon/></Button>
     </Form>
     </Navbar.Collapse>
     <div className="">

@@ -2,12 +2,21 @@ import { cartContext } from '../../context/cartContext';
 import { useContext } from 'react';
 import { Button } from 'react-bootstrap';
 import {Link} from 'react-router-dom'
+import CheckoutComponent from '../checkout';
+import { useState } from 'react';
 
 
 const CartComponent = () =>{
     const {cart, cancelShop, removeItem, price} = useContext(cartContext);
+    const [show,setShow]= useState(true)
+    const [hide,setHide]= useState(false)
     
     const condition = cart.length !== 0
+
+    const handleView = () =>{
+        setShow(false)
+        setHide(true)
+    }
  
     return (
         <>
@@ -16,7 +25,8 @@ const CartComponent = () =>{
                 <h3>Carrito de compras</h3>
                 </div>
             <hr/>
-            <div className="row">
+            <div id="whole-content" className="row">
+            <div className="row col-sm-4">
             {condition ? 
             <div id="cart-content">
             <div className="row">
@@ -34,7 +44,7 @@ const CartComponent = () =>{
                         <div className="m-3 col-xs-2">
                             <h6>Precio: $ {cart.item.item.price}</h6> 
                         </div>
-                        <div className="col-xs-5 aling-items-top">
+                        <div className="col-xs-5 aling-items-top" hidden={hide}>
                             <Button onClick={()=>removeItem(cart)} variant="none" style={{opacity: 0.5}}>X</Button>
                         </div>    
                     </div>
@@ -46,8 +56,8 @@ const CartComponent = () =>{
                 <div className="aling-items-top justify-content-right col-xs-3">
                     <h5>Total a pagar: ${price} </h5>
                 </div>
-                <div className="col-xs-3">
-                    <Link to={`/checkout`}><Button variant="danger" className="m-3">Finalizar Compra</Button></Link>
+                <div className="col-xs-3" hidden={hide}>
+                    <Button variant="danger" onClick={handleView} className="m-3">Finalizar Compra</Button>
                     <Button className="p-0" variant="link" style={{color:'black', opacity:0.7,fontSize:"0.8em"}} onClick={() =>cancelShop(cart)}>Cancelar compra</Button>
                 </div>
             </div>
@@ -59,6 +69,10 @@ const CartComponent = () =>{
                <Link to={`/`}> <Button variant="danger">Seguir comprando</Button></Link>
             </div>
             }
+            </div>
+            <div hidden={show} className="col-sm-6 pl-4" style={{borderLeftColor:"gainsboro", borderLeftStyle:"solid"}}>
+                <CheckoutComponent/>
+            </div>
             </div>
         </div>
         </>
