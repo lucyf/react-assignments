@@ -1,50 +1,57 @@
+import { useState } from 'react';
+import { useContext } from 'react';
 import { Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
+import { checkoutContext } from '../../context/checkoutContext';
 
 
 const AddressComponent = ()=>{
+    const {activeStep, handleNext, handleBack} = useContext(checkoutContext);
+    const [address, setAddress]= useState('');
+    const [zipCode, setZipCode]= useState('');
+    const [city, setCity]= useState('');
+    const [localidad, setLocalidad]= useState('');
+    const [comment, setComment]= useState('');
 
-   return (<>
-    <div id="shipping-address" className="mt-3 ml-3">
-        <div className="row" >
-        <h4 style={{backgroundColor:"black", color:"white"}} className="pr-2 pl-2 mr-2">2</h4>
-        <h4>Datos del envío..</h4>
-        </div>
-    <div className="row align-items-center"> 
+    const isEnabled = address.length > 2 && zipCode.length > 2 && city.length > 2 && localidad.length > 2; 
+
+    
+
+   return (
+        <>
+    <div className="mt-3 ml-3 pl-3 row align-items-center"> 
     <Form>
         <div className="row mb-3">
             <Form.Label>Direccion de envío *</Form.Label>
-            <Form.Control type="text" placeholder="Calle, número, dpto." />
+            <Form.Control type="text" onChangeCapture={(e) =>{setAddress(e.target.value)}} placeholder="Calle, número, dpto." />
         </div>
         <div className="row p-0 mb-3">
             <div className="col pl-0">
             <Form.Label>Código Postal *</Form.Label>
-            <Form.Control type="text" placeholder="Código postal" />
+            <Form.Control onChangeCapture={(e) =>{setZipCode(e.target.value)}} type="text" placeholder="Código postal" />
             </div>
             <div className="col">
             <Form.Label>Ciudad *</Form.Label>
-            <Form.Control type="text" placeholder="Ciudad" />
+            <Form.Control onChangeCapture={(e) =>{setCity(e.target.value)}} type="text" placeholder="Ciudad" />
             </div>
             <div className="col">
             <Form.Label>Localidad*</Form.Label>
-            <Form.Control type="text" placeholder="Localidad" />
+            <Form.Control onChangeCapture={(e) =>{setLocalidad(e.target.value)}} type="text" placeholder="Localidad" />
             </div>
         </div>
         <div className="row mb-3">
         <Form.Label>Comentarios</Form.Label>
-            <Form.Control as="textarea" rows={3}  placeholder="Agrega comentarios necesarios para el envio." />
+            <Form.Control onChangeCapture={(e) =>{setComment(e.target.value)}} as="textarea" rows={3}  placeholder="Agrega comentarios necesarios para el envio." />
         </div>
         <div className="pl-0">
-        <Button variant="dark" className="mr-2">Continuar</Button>
-        <Button variant="outline-dark">Volver</Button>
+        {activeStep !== 0 && (
+            <Button variant="outline-dark" className="mr-2" onClick={handleBack}>Volver</Button>
+        )}
+            <Button disabled={!isEnabled} onClick={handleNext} variant="dark">Continuar</Button>
         </div>
     </Form>
     </div>
-
-    </div>
-
     </>)
-
 }
 
 export default AddressComponent;

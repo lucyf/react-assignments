@@ -8,6 +8,7 @@ import CartComponent from './components/cartComponent';
 import CheckoutComponent from './components/checkout';
 import { DataBaseProvider } from './context/dataBaseContext';
 import { FiltersProvider } from './context/filters';
+import { CheckoutProvider } from './context/checkoutContext';
 
 
 
@@ -15,8 +16,9 @@ import { FiltersProvider } from './context/filters';
 const App = () => {
   return (
     <>
-    <FiltersProvider>
     <DataBaseProvider>
+    <FiltersProvider>
+    <CheckoutProvider>
     <CartProvider>
     <BrowserRouter>
         <NavbarComponent />
@@ -31,8 +33,9 @@ const App = () => {
     </div>
     </BrowserRouter>
     </CartProvider>
-    </DataBaseProvider>
+    </CheckoutProvider>
     </FiltersProvider>
+    </DataBaseProvider>
     </>
   );
 }

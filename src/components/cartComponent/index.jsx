@@ -26,7 +26,7 @@ const CartComponent = () =>{
                 </div>
             <hr/>
             <div id="whole-content" className="row">
-            <div className="row col-sm-4">
+            <div className="row col-sm-6">
             {condition ? 
             <div id="cart-content">
             <div className="row">
@@ -39,7 +39,7 @@ const CartComponent = () =>{
                         <div className="m-3 col-xs-6">
                             <h6><strong>{cart.item.item.name}</strong></h6>
                             <p style={{opacity:0.5}} className="mb-1">Cantidad: {cart.quantity}</p>
-                            <p style={{opacity:0.5}}>Descripcion de producto</p>
+                            <p style={{opacity:0.5}}>{cart.description}</p>
                         </div>
                         <div className="m-3 col-xs-2">
                             <h6>Precio: $ {cart.item.item.price}</h6> 
@@ -57,7 +57,7 @@ const CartComponent = () =>{
                     <h5>Total a pagar: ${price} </h5>
                 </div>
                 <div className="col-xs-3" hidden={hide}>
-                    <Button variant="danger" onClick={handleView} className="m-3">Finalizar Compra</Button>
+                    <Button variant="danger" onClick={handleView} className="m-3">Checkout</Button>
                     <Button className="p-0" variant="link" style={{color:'black', opacity:0.7,fontSize:"0.8em"}} onClick={() =>cancelShop(cart)}>Cancelar compra</Button>
                 </div>
             </div>

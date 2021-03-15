@@ -1,9 +1,10 @@
 import * as React from 'react';
 import ItemListComponent from '../../components/itemList';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
 import { dataBaseContex } from '../../context/dataBaseContext';
 import { filtersContext } from '../../context/filters';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 
 
@@ -11,11 +12,9 @@ const ItemListContainer = () => {
   const {categoryId} = useParams();
   const {itemList} = useContext(dataBaseContex);
   // const {searchValue} = useContext(filtersContext)
-  const [product, setProduct] = React.useState([]);
+  const [product, setProduct] = React.useState([]); 
+
   
-
-
-
   useEffect(()=>{
   const myPromise = new Promise((resolve,reject) =>{
       resolve(()=>{
@@ -31,10 +30,26 @@ const ItemListContainer = () => {
   });
 
   },[categoryId, itemList]);
+
+  const cheaperPrice =()=> {product.sort((a,b)=>{return a.price - b.price})}
+
+
+  const higherPrice = () => {product.sort((a,b)=>{ return b.price - a.price })}
   
   return (
     <>
-         
+      <div className=" ml-auto mt-3  row ">
+        <Dropdown>
+            <Dropdown.Toggle variant="light" id="dropdown-basic">
+                Ordenar
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+                <Dropdown.Item onClick={cheaperPrice}>Menor Precio</Dropdown.Item>
+                <Dropdown.Item onClick={higherPrice}>Mayor Precio</Dropdown.Item>
+            </Dropdown.Menu>
+        </Dropdown>
+      </div>
       <div className="ml-3 mt-3">
       <ItemListComponent product={product}/>
       </div>
