@@ -4,18 +4,36 @@ import { Button } from 'react-bootstrap';
 import {Link} from 'react-router-dom'
 import CheckoutComponent from '../checkout';
 import { useState } from 'react';
+import { dataBaseContex } from '../../context/dataBaseContext';
+
 
 
 const CartComponent = () =>{
     const {cart, cancelShop, removeItem, price} = useContext(cartContext);
+    const {itemList} = useContext(dataBaseContex);
     const [show,setShow]= useState(true)
     const [hide,setHide]= useState(false)
     
     const condition = cart.length !== 0
 
+
     const handleView = () =>{
-        setShow(false)
-        setHide(true)
+             setShow(false)
+             setHide(true)
+        
+    }
+
+    const finishShop = () =>{
+         let cartIds = cart.map((cart) => cart.item.item.id)
+        let filter = itemList.filter(itemList => {
+            let res = itemList.id.includes(cartIds.toString())
+            return res === true
+        })
+        let cartStock = cart.map((cart) => cart.quantity)
+        let dbStock = filter.map((filter) => filter.stock)
+        // if(dbStock >= cartStock){
+
+        // }
     }
  
     return (
@@ -74,6 +92,10 @@ const CartComponent = () =>{
                 <CheckoutComponent/>
             </div>
             </div>
+        </div>
+
+        <div>
+            <button onClick={finishShop}>FinishMock</button>
         </div>
         </>
     )

@@ -9,6 +9,7 @@ import CheckoutComponent from './components/checkout';
 import { DataBaseProvider } from './context/dataBaseContext';
 import { FiltersProvider } from './context/filters';
 import { CheckoutProvider } from './context/checkoutContext';
+import FooterComponent from './components/footer';
 
 
 
@@ -32,6 +33,7 @@ const App = () => {
             </Switch>
     </div>
     </BrowserRouter>
+    <FooterComponent/>
     </CartProvider>
     </CheckoutProvider>
     </FiltersProvider>

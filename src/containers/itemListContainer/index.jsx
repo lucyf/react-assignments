@@ -31,14 +31,18 @@ const ItemListContainer = () => {
 
   },[categoryId, itemList]);
 
-  const cheaperPrice =()=> {product.sort((a,b)=>{return a.price - b.price})}
+  const cheaperPrice =()=> {
+    setProduct([...product.sort((a,b)=> (a.price > b.price ? 1: -1))]);
+  }
 
 
-  const higherPrice = () => {product.sort((a,b)=>{ return b.price - a.price })}
+  const higherPrice = () => {
+    setProduct([...product.sort((a,b)=> (a.price < b.price ? 1: -1))]);
+  }
   
   return (
     <>
-      <div className=" ml-auto mt-3  row ">
+      <div className=" ml-auto mt-3  row juttify-content-right">
         <Dropdown>
             <Dropdown.Toggle variant="light" id="dropdown-basic">
                 Ordenar

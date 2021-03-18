@@ -55,6 +55,10 @@ const BuyerDataComponent = ()=>{
                     <Form.Label>Teléfono</Form.Label>
                     <Form.Control type="text" onChangeCapture={(e) =>{setPhone(e.target.value)}} placeholder="Ingresa tu teléfono" />
                 </Form.Group>
+                <Form.Group controlId="formBasicCheckbox">
+                    <Form.Check type="radio" label="Envio a domicilio." />
+                    <Form.Label style={{opacity: 0.5, fontSize: "0.85rem"}}>* Si no eliges esta opción, te esperamos en nuestro local para que retires tu compra.</Form.Label>
+                </Form.Group>
                 {activeStep !== 0 && (
                     <Button variant="outline-dark" className="mr-2" onClick={handleBack}>Volver</Button>
                     )}

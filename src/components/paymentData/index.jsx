@@ -6,9 +6,11 @@ import Modal from 'react-bootstrap/Modal';
 import { useState } from 'react';
 import { cartContext } from '../../context/cartContext';
 import { Link } from 'react-router-dom';
+import { dataBaseContex } from '../../context/dataBaseContext';
 
 const PaymentDataComponent = ()=>{
     const {activeStep, handleBack, orderId } = useContext(checkoutContext);
+    const {itemList} = useContext(dataBaseContex);
     const {cancelShop, cart} = useContext(cartContext);
     const [show, setShow] = useState(false);
     const [cardNumber, setCardNumber] = useState('');
@@ -22,6 +24,12 @@ const PaymentDataComponent = ()=>{
         setShow(false);
         cancelShop(cart);
     };
+
+    const finishShop = () =>{
+        cart.map((cart) => console.log(cart.item.item.id))
+
+    }
+    
     const handleShow = () => setShow(true);
 
    return (
@@ -62,7 +70,7 @@ const PaymentDataComponent = ()=>{
             </Modal.Header>
             <Modal.Body>El numero de tu pedido es <strong># {orderId}</strong>. Te enviamos un mail con la información de tu compra.</Modal.Body>
             <Modal.Footer>
-                <Link to={`/`}><Button variant="danger" onClick={handleClose}>
+                <Link to={`/`}><Button variant="danger" onClick={finishShop}>
                         Cerrar
                 </Button></Link>
             </Modal.Footer>

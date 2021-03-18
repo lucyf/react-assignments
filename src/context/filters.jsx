@@ -7,7 +7,7 @@ import { useContext } from 'react';
 export const filtersContext = createContext();
 
 export const FiltersProvider = ({children})=> {    
-    const [searchValue, setSearchValue] = useState();
+    const [searchValue, setSearchValue] = useState("");
     const [result, setResult] = useState([]);
     const {itemList} = useContext(dataBaseContex);
 
@@ -16,15 +16,6 @@ export const FiltersProvider = ({children})=> {
         let trimedSearch = e.trim()
        setSearchValue(trimedSearch.toLowerCase());    
     }
-    
-    
-    // const submitResult = (e) =>{
-    //    let filter = itemList.filter(itemList =>{
-    //        return itemList.searchKey.includes(e)
-    //    })
-    //    console.log(result)
-    //    return setResult(filter)
-    // }
 
 
    
