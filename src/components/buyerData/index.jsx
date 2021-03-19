@@ -6,8 +6,8 @@ import { getFirestore } from '../../firebase';
 import { checkoutContext } from '../../context/checkoutContext';
 
 const BuyerDataComponent = ()=>{
-    const {cart, price, cancelShop} = useContext(cartContext)
-    const {activeStep, handleNext, handleBack, handleOrderId, orderId} = useContext(checkoutContext)
+    const {cart, price} = useContext(cartContext)
+    const {activeStep, handleNext, handleBack, handleOrderId, checked , setChecked} = useContext(checkoutContext)
 
     const [name, setName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -27,11 +27,14 @@ const BuyerDataComponent = ()=>{
    const orderBtn = ()=>{
         OrderCollection.add(newOrder).then((value) =>{
             handleOrderId(value.id);
-
         });
         handleShow();
         handleNext();
 
+    }
+
+    const handleInputChange = (e) => {
+        setChecked(e)
     }
    
     return (
@@ -56,7 +59,7 @@ const BuyerDataComponent = ()=>{
                     <Form.Control type="text" onChangeCapture={(e) =>{setPhone(e.target.value)}} placeholder="Ingresa tu teléfono" />
                 </Form.Group>
                 <Form.Group controlId="formBasicCheckbox">
-                    <Form.Check type="radio" label="Envio a domicilio." />
+                    <Form.Check type="checkbox"  onChange={(e)=>{handleInputChange(e.target.value)}} label="Envio a domicilio." />
                     <Form.Label style={{opacity: 0.5, fontSize: "0.85rem"}}>* Si no eliges esta opción, te esperamos en nuestro local para que retires tu compra.</Form.Label>
                 </Form.Group>
                 {activeStep !== 0 && (

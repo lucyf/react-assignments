@@ -8,6 +8,7 @@ export const checkoutContext = createContext();
 export const CheckoutProvider = ({children})=> {   
     const [activeStep, setActiveStep] =useState(0);
     const [orderId, setOrderId] = useState('');
+    const [checked, setChecked] = useState(false);
 
     const handleOrderId = (value) => {
         setOrderId(value)
@@ -17,15 +18,23 @@ export const CheckoutProvider = ({children})=> {
     const steps = ['Agrega tus datos', 'Datos de Envio', 'Datos de pago'];
 
     const handleNext = () => {
-        setActiveStep(activeStep + 1);
+        if(checked === true){
+          setActiveStep(activeStep + 1);
+        }else{
+          setActiveStep(activeStep + 2);
+        }
       };
     
       const handleBack = () => {
-        setActiveStep(activeStep - 1);
+        if(checked === true){
+          setActiveStep(activeStep - 1);
+        }else{
+          setActiveStep(activeStep - 2);
+        }
       };
  
 
-    return <checkoutContext.Provider value={{activeStep, handleNext, handleBack, steps, orderId, handleOrderId}}>
+    return <checkoutContext.Provider value={{activeStep, handleNext, handleBack, steps, orderId, handleOrderId, checked,setChecked}}>
         {children}
     </checkoutContext.Provider>
 }

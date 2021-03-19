@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 import CheckoutComponent from '../checkout';
 import { useState } from 'react';
 import { dataBaseContex } from '../../context/dataBaseContext';
-import { getFirestore, } from '../../firebase';
+
 
 
 
@@ -23,33 +23,6 @@ const CartComponent = () =>{
              setShow(false)
              setHide(true)
         
-    }
-
-    const db = getFirestore()
-
-    const finishShop =  () => {
-        let cartIds = cart.map((cart) => cart.item.item.id)
-        let filter = itemList.filter(itemList => {
-            let res = itemList.id.includes(cartIds.toString())
-            return res === true
-        })
-        let cartStock = cart.map((cart) => cart.quantity)
-        // let finalStock = cart.map((cart)=> filter.stock - cart.quantity)
-        console.log(cartStock)
-        db.collection('ItemCollection').get().then((value) =>{
-                value.forEach((value, i) =>{
-                    if(cartIds.includes(value.id) === true ){
-                      return cart.map((cart)=>{
-                        db.collection('ItemCollection').doc(value.id.toString()).update(
-                         {stock: value.data().stock - cart.quantity}) 
-                      }) 
-                    }else if(value.data().stock <= 0){
-                        alert('Los objetos seleccionados ya no se encuentran disponibles.')
-
-                    }
-                        
-                })
-             })
     }
  
     return (
@@ -108,10 +81,6 @@ const CartComponent = () =>{
                 <CheckoutComponent/>
             </div>
             </div>
-        </div>
-
-        <div>
-            <button onClick={finishShop}>FinishMock</button>
         </div>
         </>
     )

@@ -6,11 +6,10 @@ import Modal from 'react-bootstrap/Modal';
 import { useState } from 'react';
 import { cartContext } from '../../context/cartContext';
 import { Link } from 'react-router-dom';
-import { dataBaseContex } from '../../context/dataBaseContext';
+import { getFirestore, } from '../../firebase';
 
 const PaymentDataComponent = ()=>{
     const {activeStep, handleBack, orderId } = useContext(checkoutContext);
-    const {itemList} = useContext(dataBaseContex);
     const {cancelShop, cart} = useContext(cartContext);
     const [show, setShow] = useState(false);
     const [cardNumber, setCardNumber] = useState('');
@@ -19,18 +18,37 @@ const PaymentDataComponent = ()=>{
     const [securityCode, setSecurityCode] = useState('');
 
     const isEnabled = cardNumber.length > 9 && cardName.length > 9 && expirationDate.length === 5 && securityCode.length > 2
+    
+    const handleShow = () => setShow(true);
 
     const handleClose = () => {
         setShow(false);
         cancelShop(cart);
     };
+        
+    const db = getFirestore()
 
-    const finishShop = () =>{
-        cart.map((cart) => console.log(cart.item.item.id))
-
+    const reduceStockFromDb =  () => {
+            let cartIds = cart.map((cart) => cart.item.item.id)
+            db.collection('ItemCollection').get().then((value) =>{
+                    value.forEach((value) =>{
+                        if(cartIds.includes(value.id) === true ){
+                        return cart.map((cart)=>{
+                            db.collection('ItemCollection').doc(value.id.toString()).update(
+                            {stock: value.data().stock - cart.quantity}) 
+                        }) 
+                        }else if(value.data().stock <= 0){
+                            alert('Los objetos seleccionados ya no se encuentran disponibles.')
+                        }
+                    })
+            })
     }
-    
-    const handleShow = () => setShow(true);
+
+    const finishShop = () => {
+        reduceStockFromDb();
+        handleShow()
+    }
+        
 
    return (
         <>
@@ -58,7 +76,7 @@ const PaymentDataComponent = ()=>{
         {activeStep !== 0 && (
             <Button variant="outline-dark" className="mr-2" onClick={handleBack}>Volver</Button>
         )}
-            <Button disabled={!isEnabled} onClick={handleShow} variant="dark">Finalizar Compra</Button>
+            <Button disabled={!isEnabled} onClick={finishShop} variant="dark">Finalizar Compra</Button>
         </div>
     </Form>
     </div>
@@ -70,7 +88,7 @@ const PaymentDataComponent = ()=>{
             </Modal.Header>
             <Modal.Body>El numero de tu pedido es <strong># {orderId}</strong>. Te enviamos un mail con la información de tu compra.</Modal.Body>
             <Modal.Footer>
-                <Link to={`/`}><Button variant="danger" onClick={finishShop}>
+                <Link to={`/`}><Button variant="danger" onClick={handleClose}>
                         Cerrar
                 </Button></Link>
             </Modal.Footer>
