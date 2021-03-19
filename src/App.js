@@ -10,6 +10,7 @@ import { DataBaseProvider } from './context/dataBaseContext';
 import { FiltersProvider } from './context/filters';
 import { CheckoutProvider } from './context/checkoutContext';
 import FooterComponent from './components/footer';
+import CarouselComponent from './components/carousel';
 
 
 
