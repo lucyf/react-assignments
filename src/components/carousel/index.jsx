@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Button } from 'react-bootstrap';
 import Carousel from 'react-bootstrap/Carousel';
 
 
@@ -18,9 +19,6 @@ const CarouselComponent = ()=>{
                 src="https://i.imgur.com/VgtSZ3A.png"
                 alt="Planners"
                 />
-                <Carousel.Caption>
-                    <h4>Aqui va un boton</h4>
-                </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
                 <img
@@ -29,9 +27,6 @@ const CarouselComponent = ()=>{
                 alt="Articulos de oficina"
                 />
 
-                <Carousel.Caption>
-                <h4>Aqui va un boton</h4>
-                </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
                 <img
@@ -39,10 +34,6 @@ const CarouselComponent = ()=>{
                 src="https://i.imgur.com/kKhPkxY.png"
                 alt="Decoracion"
                 />
-
-                <Carousel.Caption>
-                <h4>Aqui va un boton</h4>
-                </Carousel.Caption>
             </Carousel.Item>
             </Carousel>
         </>

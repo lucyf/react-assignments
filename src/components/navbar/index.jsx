@@ -1,4 +1,4 @@
-import { Navbar, Nav, Form, FormControl, Button} from 'react-bootstrap';
+import { Navbar, Nav, Form, FormControl, Button, NavDropdown} from 'react-bootstrap';
 import CartWidgetComponent from '../cartWidget';
 import {LinkContainer} from 'react-router-bootstrap';
 import SearchIcon from '@material-ui/icons/Search';
@@ -22,8 +22,7 @@ const NavbarComponent = () => {
     <LinkContainer to={`/category/${'pens'}`}><Nav.Link>Lapiceras</Nav.Link></LinkContainer>
     <LinkContainer to={`/category/${'notebooks'}`}><Nav.Link>Planners</Nav.Link></LinkContainer>
     <LinkContainer to={`/category/${'clocks'}`}><Nav.Link>Relojes</Nav.Link></LinkContainer>
-    <Nav.Link href="#link">Contacto</Nav.Link>
-      <Nav.Link href="#link">FAQ</Nav.Link>
+    <LinkContainer to={`/contact`}><Nav.Link href="#link">Contacto</Nav.Link></LinkContainer>
     </Nav>
     <Form inline>
       <FormControl type="text" placeholder="Búsqueda" value={searchValue} onChangeCapture={(e)=>{catchInput(e.target.value)}} className="mr-sm-2" />

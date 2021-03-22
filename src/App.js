@@ -10,7 +10,7 @@ import { DataBaseProvider } from './context/dataBaseContext';
 import { FiltersProvider } from './context/filters';
 import { CheckoutProvider } from './context/checkoutContext';
 import FooterComponent from './components/footer';
-import CarouselComponent from './components/carousel';
+import ContactComponent from './components/contact';
 
 
 
@@ -30,6 +30,7 @@ const App = () => {
               <Route path='/category/:categoryId' component={ItemListContainer}/>
               <Route path='/item/:id' component={ItemDetailContainer}/>
               <Route path='/cart' component={CartComponent}/>
+              <Route path='/contact' component={ContactComponent}/>
               <Route path='/checkout' component={CheckoutComponent}/>
             </Switch>
     </div>

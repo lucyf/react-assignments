@@ -48,8 +48,8 @@ const ItemListContainer = () => {
       <div style={{display: condition ? "block": "none"}} className="mt-3 mb-3">
         <CarouselComponent/>
       </div>
-      <div className=" ml-auto mt-3  row juttify-content-right">
-        <Dropdown>
+      <div className=" row ">
+        <Dropdown className=" d-flex ml-auto mr-3 row juttify-content-right">
             <Dropdown.Toggle variant="light" id="dropdown-basic">
                 Ordenar
             </Dropdown.Toggle>
