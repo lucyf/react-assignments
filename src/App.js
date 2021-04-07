@@ -26,7 +26,7 @@ const App = () => {
         <NavbarComponent />
     <div className="container-fluid">
             <Switch>
-              <Route exact path='/react-assignments' component={ItemListContainer}/>
+              <Route exact path='/react-assignments/' component={ItemListContainer}/>
               <Route path='/category/:categoryId' component={ItemListContainer}/>
               <Route path='/item/:id' component={ItemDetailContainer}/>
               <Route path='/cart' component={CartComponent}/>
