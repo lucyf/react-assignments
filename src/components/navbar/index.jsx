@@ -14,7 +14,7 @@ const NavbarComponent = () => {
     <>
  <Navbar bg="light">
 
-    <LinkContainer to={`/`}><Navbar.Brand className="m-0 p-0 "><img src="/img/all-you-need.svg" width="150px" alt=""/></Navbar.Brand></LinkContainer>
+    <LinkContainer to={`/`}><Navbar.Brand className="m-0 p-0 "><img src="https://i.imgur.com/Xfl9Ifp.png" width="150px" alt=""/></Navbar.Brand></LinkContainer>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav" className="p-3 ">
     <Nav className="mr-auto">
