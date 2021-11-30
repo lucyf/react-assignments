@@ -2,9 +2,19 @@ import MapIcon from '@material-ui/icons/Map';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
+import { makeStyles } from '@material-ui/core/styles';
+
+
+
+const useStyles = makeStyles({
+    img: {
+      borderRadius: '10px'
+    },
+    
+  });
 
 const ContactComponent = () => {
-
+const classes = useStyles()
 
     return (
         <>
@@ -15,7 +25,7 @@ const ContactComponent = () => {
             <div id="firts-row" className="row m-auto justify-content-center mt-3 p-6" style={{marginBottom:"40px"}}>
                 <div id="column-1" className="col-sm-4">
                     <div className="row justify-content-center"> 
-                     <img className="mr-2" src={'../img/whatsapp.svg'} width="30rem" alt="whatsapp"/>
+                     <img className="mr-2" src={'https://i.imgur.com/wBPoMxD.png'} width="30rem" alt="whatsapp"/>
                      <p className="mb-0" style={{fontSize:"0.85rem"}}>01155667788</p>
                     </div>
                 </div>
@@ -32,7 +42,8 @@ const ContactComponent = () => {
             </div>
            
             <div id="second-row" className="justify-content-center row mt-3">
-                <div id="form" style={{backgroundColor:"#E8E9EB", borderRadius:"20px"}} className="p-5" >
+                
+                <div id="form" style={{backgroundColor:"#E8E9EB", borderRadius:"20px"}} className="p-5 " >
                     <h4 className="mb-3">Envianos tu consulta</h4>
                     <Form > 
                     <div className="row">
