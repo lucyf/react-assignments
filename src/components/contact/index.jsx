@@ -15,7 +15,7 @@ const ContactComponent = () => {
             <div id="firts-row" className="row m-auto justify-content-center mt-3 p-6" style={{marginBottom:"40px"}}>
                 <div id="column-1" className="col-sm-4">
                     <div className="row justify-content-center"> 
-                     <img className="mr-2" src={'../img/whatsapp.svg'} width="30rem" alt="whatsapp"/>
+                     <img className="mr-2" src={'https://i.imgur.com/wBPoMxD.png'} width="30rem" alt="whatsapp"/>
                      <p className="mb-0" style={{fontSize:"0.85rem"}}>01155667788</p>
                     </div>
                 </div>
